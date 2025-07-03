@@ -1,0 +1,37 @@
+openapi: 3.0.1
+ 
+info:
+  title: Tenable Vulnerability Plugin
+  version: 1.0.0
+ 
+servers:
+    - url:https://cloud.tenable.com/
+ 
+paths:
+  /vulnerabilities:
+    get:
+      summary: Get recent vulnerabilities from Tenable.io
+      parameters:
+        - in: query
+          name: severity
+          schema:
+            type: string
+          description: Filter by severity (e.g., "critical", "high")
+      responses:
+        '200':
+          description: A list of vulnerabilities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    severity:
+                      type: string
+                    published:
+                      type: string
